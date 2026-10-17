@@ -24,7 +24,7 @@ cp .env.example .env    # then set ANTHROPIC_API_KEY (needed only for layer 3)
 | `python run_scanner.py` | Scans the S&P 500 if the gate allows it, saves `output/scan.pkl` + `scan_candidates.csv`. `--refresh` forces new data, `--top N` rows to print. |
 | `python run_analysis.py --scan-and-analyze` | Full end-to-end: gate, then scanner, then Claude on the top 10 candidates, then blend. Saves `output/analysis.pkl` + `analysis_blended.csv`. Without the flag it analyzes the last saved scan. `--top N`, `--force` (ignore the analysis cache), `--refresh`. |
 | `streamlit run app.py` | Dashboard: **Macro Gate**, **Stock Scanner**, **AI Analyst** pages. |
-| `python -m pytest` | Test suite (no network, no paid API calls). |
+| `python -m pytest` | Test suite (no network, no paid API calls; tests never see your real `ANTHROPIC_API_KEY`). Add `--cov=.` for coverage. |
 
 ## Layer 1: Macro gate (`signals/`, `pipeline.py`, `backtest/`)
 

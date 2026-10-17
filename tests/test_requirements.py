@@ -7,8 +7,8 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 # Project-local top-level modules and packages, discovered so new ones never look third-party.
-LOCAL = {p.stem for p in ROOT.glob("*.py")} | {p.name for p in ROOT.iterdir()
-                                              if p.is_dir() and any(p.glob("*.py"))}
+LOCAL = ({p.stem for p in ROOT.glob("*.py")} | {p.stem for p in (ROOT / "tests").glob("*.py")}
+         | {p.name for p in ROOT.iterdir() if p.is_dir() and any(p.glob("*.py"))})
 DIST_NAME = {"dotenv": "python-dotenv", "yaml": "pyyaml"}   # import name -> PyPI name
 
 

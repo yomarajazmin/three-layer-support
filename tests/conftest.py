@@ -7,6 +7,19 @@ import pytest
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 
+@pytest.fixture(autouse=True)
+def no_real_api_key(monkeypatch):
+    """Tests never see the real ANTHROPIC_API_KEY: .env loading is disabled and the variable removed,
+    so no test can make a paid Claude call even when a .env file exists."""
+    import dotenv
+
+    from analyst import analyzer
+    noop = lambda *a, **k: False
+    monkeypatch.setattr(dotenv, "load_dotenv", noop)
+    monkeypatch.setattr(analyzer, "load_dotenv", noop)
+    monkeypatch.delenv("ANTHROPIC_API_KEY", raising=False)
+
+
 @pytest.fixture
 def world(tmp_path, monkeypatch):
     """Synthetic market + faked short interest, fundamentals and Claude, inside a temp cwd

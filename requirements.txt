@@ -6,7 +6,9 @@ plotly>=7.1
 lxml>=6.1
 requests
 anthropic>=1.15
+httpx2            # HTTP client used by anthropic (imported directly in tests)
 python-dotenv>=1.2
 pydantic>=2.14
 tzdata            # timezone database for America/New_York on Windows
 pytest
+pytest-cov        # coverage: python -m pytest --cov=. tests
