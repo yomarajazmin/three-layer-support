@@ -1,0 +1,12 @@
+yfinance>=1.7
+streamlit>=1.66
+pandas>=3.0
+numpy>=2.5
+plotly>=7.1
+lxml>=6.1
+requests
+anthropic>=1.15
+python-dotenv>=1.2
+pydantic>=2.14
+tzdata            # timezone database for America/New_York on Windows
+pytest
